@@ -101,9 +101,9 @@ public class MunicipioController {
     }
 
     @DeleteMapping("/excluir/cidade/{identificador}")
-    public ResponseEntity<Void> deletarCidade(@PathVariable("identificador") String codigoIbge) {
+    public ResponseEntity<Void> deletarCidade(@PathVariable("identificador") String uuidMunicipio) {
 
-	municipioService.removerCidade(codigoIbge);
+	municipioService.removerCidade(uuidMunicipio);
 
 	return ResponseEntity.noContent().build();
 

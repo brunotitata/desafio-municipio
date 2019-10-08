@@ -102,12 +102,12 @@ public class MunicipioService {
 
     }
 
-    public void removerCidade(String codigoIbge) {
+    public void removerCidade(String uuid) {
 
-	Optional<Municipio> cidade = municipioRepository.findByCodigoIbge(codigoIbge);
+	Optional<Municipio> cidade = municipioRepository.findByMunicipioId(new MunicipioId(uuid));
 
 	if (!cidade.isPresent()) {
-	    throw new IllegalArgumentException("Codigo IBGE " + codigoIbge + " não encontrado na base de dados.");
+	    throw new IllegalArgumentException("UUID do municipio " + uuid + " não encontrado na base de dados.");
 	}
 
 	municipioRepository.delete(cidade.get());
