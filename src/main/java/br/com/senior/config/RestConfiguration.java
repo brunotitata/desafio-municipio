@@ -9,11 +9,6 @@ public class RestConfiguration {
 
     @Bean
     public RestTemplate restTemplate() {
-//        HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory(
-//                HttpClientBuilder.create().build());
-//        RestTemplate restTemplate = new RestTemplate(clientHttpRequestFactory);
-//        return restTemplate;
-	
 	return new RestTemplate();
     }
 
