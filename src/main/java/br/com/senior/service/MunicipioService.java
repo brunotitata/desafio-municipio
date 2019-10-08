@@ -82,14 +82,9 @@ public class MunicipioService {
 		    "Cidade com nome " + novaCidade.getNomeMunicipio() + " já cadastro no sistema.");
 	});
 
-	Municipio municipio = new Municipio(
-		municipioRepository.newIdentity(), 
-		novaCidade.getCodigoIbge(),
-		novaCidade.getNomeMunicipio(), 
-		novaCidade.getLatitude(), 
-		novaCidade.getLongitude(),
-		novaCidade.getCapital(), 
-		novaCidade.getCodigoUf());
+	Municipio municipio = new Municipio(municipioRepository.newIdentity(), novaCidade.getCodigoIbge(),
+		novaCidade.getNomeMunicipio(), novaCidade.getLatitude(), novaCidade.getLongitude(),
+		novaCidade.getCapital(), novaCidade.getCodigoUf());
 
 	municipioRepository.save(municipio);
 
@@ -178,8 +173,14 @@ public class MunicipioService {
 
     }
 
-    public List<Municipio> listarTodasCapitaisOrdenadasPorNome() {
-	return municipioRepository.findByCapitalOrderByNomeMunicipioAsc("SIM");
+    public List<MunicipioData> listarTodasCapitaisOrdenadasPorNome() {
+
+	return municipioRepository.findByCapitalOrderByNomeMunicipioAsc("SIM").stream()
+		.map(municipio -> new MunicipioData(municipio.getCodigoIbge(), municipio.getNomeMunicipio(),
+			municipio.getLatitude(), municipio.getLongitude(), municipio.getCapital(),
+			municipio.getCodigoUf()))
+		.collect(Collectors.toList());
+
     }
 
 }

@@ -58,6 +58,12 @@ public class MunicipioController {
 	return ResponseEntity.ok(ibgeService.listarEstadosComMaiorEMenorMunicipios());
     }
 
+    @GetMapping("/cidades/capitais")
+    public ResponseEntity<List<MunicipioData>> listarTodasCapitaisOrdenadasPorNome() {
+
+	return ResponseEntity.ok().body(municipioService.listarTodasCapitaisOrdenadasPorNome());
+    }
+
     @GetMapping("/quantidade-estado")
     public ResponseEntity<List<CidadePorEstado>> listarQuantidadeDeCidadesPorEstado() {
 
